@@ -27,25 +27,25 @@ export async function getPosts(first = 10) {
 }
 
 export async function getPostBySlug(slug: string) {
-  const data = await fetchAPI(
-    `query GetPost($id: ID = "") {
-    post(id: $id, idType: SLUG) {
-      content
-      featuredImage {
-        node {
-          sourceUrl
+    const data = await fetchAPI(
+      `query GetPost($id: ID = "") {
+      post(id: $id, idType: SLUG) {
+        content
+        featuredImage {
+          node {
+            sourceUrl
+          }
         }
+        slug
+        title
       }
-      slug
-      title
-    }
-  }`,
-    {
-      variables: {
-        id: slug,
-      },
-    }
-  );
-
-  return data?.post;
-}
+    }`,
+      {
+        variables: {
+          id: slug,
+        },
+      }
+    );
+  
+    return data?.post;
+  }
